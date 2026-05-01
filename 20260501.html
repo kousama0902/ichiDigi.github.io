@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AOMORI DX SHOWCASE - 青森県DX事例ポータル</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aomori: {
+                            blue: '#0ea5e9',
+                            green: '#10b981',
+                            apple: '#ef4444',
+                            dark: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+        
+        body {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+
+        /* サムネイルがない場合の動的グラデーション */
+        .thumb-grad-1 { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+        .thumb-grad-2 { background: linear-gradient(135deg, #10b981, #059669); }
+        .thumb-grad-3 { background: linear-gradient(135deg, #8b5cf6, #d946ef); }
+        .thumb-grad-4 { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="text-gray-800 antialiased pt-20">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass-nav shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="resetFilters()">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-aomori-blue to-aomori-green flex items-center justify-center text-white shadow-lg">
+                        <i class="fa-solid fa-bolt text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-black tracking-tight text-aomori-dark leading-none">AOMORI<span class="text-aomori-blue">DX</span></h1>
+                        <p class="text-xs text-gray-500 font-bold tracking-widest mt-1">青森県DX事例ポータル</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" onclick="resetFilters()" class="text-sm font-bold text-gray-600 hover:text-aomori-blue transition">すべての事例</a>
+                    <a href="#categories" class="text-sm font-bold text-gray-600 hover:text-aomori-blue transition">カテゴリから探す</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-bg text-white py-16 sm:py-24 mb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold tracking-widest mb-4 border border-white/30">DIGITAL TRANSFORMATION</span>
+            <h2 class="text-4xl sm:text-5xl font-black mb-6 leading-tight">青森から、未来を創る。<br class="hidden sm:block">先進DXの軌跡をたどる。</h2>
+            <p class="text-lg text-blue-100 max-w-2xl mx-auto mb-10 font-medium">県内の注目すべきデジタルトランスフォーメーション事例を網羅。各企業の取り組みから、次のイノベーションのヒントを見つけてください。</p>
+            
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto relative group">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <i class="fa-solid fa-search text-gray-400 group-focus-within:text-aomori-blue transition"></i>
+                </div>
+                <input type="text" id="searchInput" placeholder="企業名、キーワード、地域などで検索..." class="block w-full pl-12 pr-4 py-4 rounded-full border-0 ring-4 ring-white/20 bg-white/95 text-gray-900 shadow-xl focus:ring-aomori-blue focus:outline-none transition text-lg font-medium placeholder-gray-400">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        
+        <!-- Filter Bar -->
+        <div id="categories" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div class="w-full md:w-auto overflow-x-auto no-scrollbar pb-2">
+                <div class="flex space-x-2" id="categoryButtons">
+                    <!-- カテゴリボタンがJSで挿入されます -->
+                </div>
+            </div>
+            
+            <div id="activeFilterDisplay" class="hidden text-sm font-bold text-aomori-blue bg-blue-50 px-4 py-2 rounded-full border border-blue-200 flex items-center gap-2 whitespace-nowrap">
+                <span>フィルター適用中</span>
+                <button onclick="resetFilters()" class="hover:text-red-500"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+
+        <!-- Tag Cloud (Popular Tags) -->
+        <div class="mb-10 flex flex-wrap gap-2" id="popularTags">
+            <!-- タグがJSで挿入されます -->
+        </div>
+
+        <!-- Grid Container -->
+        <div id="casesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- カードがJSで挿入されます -->
+        </div>
+
+        <!-- No Results -->
+        <div id="noResults" class="hidden text-center py-20">
+            <div class="text-gray-300 text-6xl mb-4"><i class="fa-regular fa-folder-open"></i></div>
+            <h3 class="text-xl font-bold text-gray-600">一致する事例が見つかりませんでした</h3>
+            <p class="text-gray-500 mt-2">別のキーワードやカテゴリをお試しください。</p>
+            <button onclick="resetFilters()" class="mt-6 px-6 py-2 bg-aomori-blue text-white rounded-full font-bold hover:bg-blue-600 transition shadow-md">すべての事例を表示</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12 text-center text-gray-500">
+        <p class="text-sm font-bold">© 2026 AOMORI DX SHOWCASE.</p>
+        <p class="text-xs mt-2">※本サイトのサムネイルは対象URLより動的に生成されています。</p>
+    </footer>
+
+    <!-- Modal (Detail & Recommendations) -->
+    <div id="detailModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl border border-gray-100">
+                    
+                    <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black transition">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+
+                    <div id="modalContent" class="flex flex-col md:flex-row">
+                        <!-- コンテンツがJSで挿入されます -->
+                    </div>
+                    
+                    <!-- レコメンドセクション（回遊性向上の要） -->
+                    <div class="bg-gray-50 p-6 sm:p-8 border-t border-gray-100">
+                        <h4 class="text-lg font-black text-gray-800 mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-link text-aomori-blue"></i> 関連するDX事例
+                        </h4>
+                        <div id="recommendedCases" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <!-- レコメンドカードがJSで挿入されます -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // --- データの定義 ---
+        const dxCases = [
+            { id: 1, category: "全国レベルの有力候補", name: "株式会社宮坂ポリマー青森", location: "つがる市", description: "自動車用シリコンゴム部品出荷工程の二次元コード化で転記ミスゼロ、作業時間を1時間から5分へ短縮。令和5年文部科学大臣表彰「創意工夫功労者賞」受賞。", url: "", tags: ["製造業", "業務効率化", "IoT"] },
+            { id: 2, category: "全国レベルの有力候補", name: "ゴールド農園", location: "弘前市", description: "リンゴ業界初のAI選果機導入（22億円投資、2024年4月本格稼働）。", url: "https://www.goldnouen.com/", tags: ["農業DX", "AI", "りんご"] },
+            { id: 3, category: "全国レベルの有力候補", name: "もりやま園株式会社", location: "弘前市", description: "第1回DXセレクション特別賞。りんご農作業の見える化アプリで労働生産性を向上。", url: "", tags: ["農業DX", "アプリ開発", "見える化", "りんご"] },
+            { id: 4, category: "全国レベルの有力候補", name: "青森つばめプロパン販売株式会社", location: "八戸市", description: "「三河屋構想」に基づく灯油タンクスマートセンサーと配送管理システム連携によるAI配送高度化。", url: "", tags: ["エネルギー", "AI", "IoT", "物流"] },
+            { id: 5, category: "全国レベルの有力候補", name: "appcycle株式会社", location: "青森市", description: "りんご残渣由来合成皮革「RINGO-TEX」開発。ANA採用、みずほ銀行プロパー融資獲得。", url: "https://appcycle.jp/", tags: ["サステナビリティ", "スタートアップ", "新素材", "りんご"] },
+            { id: 6, category: "全国レベルの有力候補", name: "株式会社MiRESSO", location: "三沢市", description: "経済産業省「J-Startup TOHOKU」青森県内唯一の選定企業。核融合関連スタートアップ。", url: "https://miresso.co.jp/", tags: ["スタートアップ", "エネルギー", "ディープテック"] },
+            { id: 7, category: "全国レベルの有力候補", name: "日本サーモンファーム株式会社", location: "深浦町", description: "弘前大学連携による屋外循環式中間育成魚高密度生産システム。ASC認証取得。", url: "https://japan-salmonfarm.com/", tags: ["水産業DX", "産学連携", "IoT"] },
+            { id: 8, category: "全国レベルの有力候補", name: "株式会社今井産業", location: "平川市", description: "端材活用木板連続曲げ加工システム「e・WOOD+」。イノベーションアワード2023優秀賞。", url: "https://www.imaisangyou.com/", tags: ["製造業", "サステナビリティ", "木材加工"] },
+            { id: 9, category: "全国レベルの有力候補", name: "モホドリ蒸溜研究所", location: "弘前市", description: "弘前大学白神酵母を活用したアップルブランデー製造。", url: "https://www.mohodori.com/", tags: ["食品製造", "産学連携", "地域資源", "りんご"] },
+            
+            { id: 10, category: "DX認定取得企業", name: "上北建設株式会社", location: "十和田市", description: "県内DX認定4社目。ICT/BIM内製化を強力に推進。", url: "https://kamikita.co.jp/", tags: ["建設DX", "BIM/CIM", "ICT"] },
+            { id: 11, category: "DX認定取得企業", name: "株式会社ビジネスサービス", location: "青森市", description: "自治体・民間システム開発の老舗企業。", url: "", tags: ["ITベンダー", "システム開発", "自治体連携"] },
+            { id: 12, category: "DX認定取得企業", name: "株式会社熊澤建築設計事務所", location: "青森市", description: "建設業界のBIM/CIM必須化にいち早く対応。DX認定取得。", url: "https://kumazawasekkei.co.jp/", tags: ["建設DX", "BIM/CIM", "設計"] },
+            
+            { id: 13, category: "自治体DX・連携", name: "三戸町", location: "三戸町", description: "AIアバター「AIさくらさん」活用による「書かない窓口」。デジタル庁全国初モデルケース（手続き70%削減）。", url: "", tags: ["自治体DX", "AI", "業務効率化", "窓口DX"] },
+            { id: 14, category: "自治体DX・連携", name: "八戸市", location: "八戸市", description: "「はちのへスマート窓口」データ可視化・分析支援。年39万件の4割DX化を達成。", url: "", tags: ["自治体DX", "データ活用", "窓口DX"] },
+            { id: 15, category: "自治体DX・連携", name: "平川市", location: "平川市", description: "AIデマンド交通「のらっさ」。県内初の公共交通におけるAI活用事例。", url: "", tags: ["自治体DX", "MaaS", "AI", "地域交通"] },
+            { id: 16, category: "自治体DX・連携", name: "むつ市", location: "むつ市", description: "県内自治体初のChatGPT正式導入、および弘前大学病院との「遠隔妊産婦管理システム」。", url: "", tags: ["自治体DX", "生成AI", "医療DX", "産学連携"] },
+            
+            { id: 17, category: "農業・産業DX", name: "株式会社寅福プラント", location: "むつ市", description: "スマート農業×カーボンマイナスの大規模温室トマト工場。青森銀行協調融資。", url: "", tags: ["スマート農業", "サステナビリティ", "環境"] },
+            { id: 18, category: "農業・産業DX", name: "株式会社マキュレ", location: "弘前市", description: "NTT東日本等と共同で「りんごDX」プロジェクト推進。IoTスマート農業実証実験。", url: "", tags: ["農業DX", "IoT", "りんご", "実証実験"] },
+            { id: 19, category: "農業・産業DX", name: "株式会社フォルテ", location: "青森市", description: "骨伝導ヘッドセット「VOCE-rable」、積雪発電。東北ニュービジネス大賞受賞。", url: "", tags: ["ハードウェア", "エネルギー", "IoT"] },
+            { id: 20, category: "農業・産業DX", name: "輝翠TECH株式会社", location: "弘前市", description: "東北大発ベンチャー。月面探査技術応用りんご農園AIロボット「Adam」開発。", url: "", tags: ["AIロボット", "スマート農業", "スタートアップ", "りんご"] }
+        ];
+
+        // カテゴリの色設定
+        const categoryColors = {
+            "全国レベルの有力候補": "bg-amber-100 text-amber-800 border-amber-200",
+            "DX認定取得企業": "bg-blue-100 text-blue-800 border-blue-200",
+            "自治体DX・連携": "bg-emerald-100 text-emerald-800 border-emerald-200",
+            "農業・産業DX": "bg-purple-100 text-purple-800 border-purple-200"
+        };
+
+        // 状態管理
+        let currentCategory = 'all';
+        let currentTag = null;
+        let currentSearch = '';
+
+        // 初期化処理
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderPopularTags();
+            renderGrid();
+
+            // 検索イベント
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                currentSearch = e.target.value.toLowerCase();
+                renderGrid();
+                updateFilterDisplay();
+            });
+        });
+
+        // サムネイルURLを生成する関数（WordPress MShotsを使用）
+        function getThumbnailHtml(url, name, id, heightClass = "h-48") {
+            if (url) {
+                const encodedUrl = encodeURIComponent(url);
+                // Mshots APIを利用してウェブサイトのスクショを取得。読み込めない場合はグラデーションのフォールバック
+                return `<img src="https://s.wordpress.com/mshots/v1/${encodedUrl}?w=600" 
+                             alt="${name}のサイト" 
+                             class="w-full ${heightClass} object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                             onerror="this.onerror=null; this.outerHTML='${getFallbackThumb(name, id, heightClass)}'">`;
+            } else {
+                return getFallbackThumb(name, id, heightClass);
+            }
+        }
+
+        function getFallbackThumb(name, id, heightClass) {
+            const gradClass = `thumb-grad-${(id % 4) + 1}`;
+            const initial = name.substring(0, 2);
+            return `<div class="w-full ${heightClass} ${gradClass} flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                        <span class="text-white text-3xl font-black opacity-40 tracking-widest">${initial}</span>
+                    </div>`;
+        }
+
+        // グリッドの描画
+        function renderGrid() {
+            const grid = document.getElementById('casesGrid');
+            const noResults = document.getElementById('noResults');
+            grid.innerHTML = '';
+
+            let filtered = dxCases.filter(item => {
+                const matchCategory = currentCategory === 'all' || item.category === currentCategory;
+                const matchTag = !currentTag || item.tags.includes(currentTag);
+                const matchSearch = item.name.toLowerCase().includes(currentSearch) || 
+                                    item.description.toLowerCase().includes(currentSearch) ||
+                                    item.location.toLowerCase().includes(currentSearch) ||
+                                    item.tags.some(t => t.toLowerCase().includes(currentSearch));
+                return matchCategory && matchTag && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            noResults.classList.add('hidden');
+
+            filtered.forEach(item => {
+                const colorClass = categoryColors[item.category] || "bg-gray-100 text-gray-800";
+                
+                const tagsHtml = item.tags.slice(0,3).map(tag => 
+                    `<span class="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded font-medium hover:bg-gray-200 cursor-pointer" onclick="event.stopPropagation(); setTagFilter('${tag}')">#${tag}</span>`
+                ).join('');
+
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover cursor-pointer group flex flex-col h-full";
+                card.onclick = () => openModal(item.id);
+                
+                card.innerHTML = `
+                    <div class="relative overflow-hidden bg-gray-200">
+                        ${getThumbnailHtml(item.url, item.name, item.id, 'h-48')}
+                        <div class="absolute top-3 left-3">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold shadow-sm ${colorClass} backdrop-blur-sm bg-opacity-90">
+                                ${item.category}
+                            </span>
+                        </div>
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur rounded-full px-2 py-1 text-xs font-bold text-gray-600 shadow-sm flex items-center gap-1">
+                            <i class="fa-solid fa-location-dot text-aomori-apple"></i> ${item.location}
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-aomori-blue transition line-clamp-2">${item.name}</h3>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-3 flex-grow leading-relaxed">${item.description}</p>
+                        <div class="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-gray-50">
+                            ${tagsHtml}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // モーダルの表示処理（回遊性のコア）
+        function openModal(id) {
+            const item = dxCases.find(c => c.id === id);
+            if (!item) return;
+
+            const colorClass = categoryColors[item.category] || "bg-gray-100 text-gray-800";
+            const tagsHtml = item.tags.map(tag => 
+                `<span class="inline-block px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-bold cursor-pointer hover:bg-aomori-blue hover:text-white transition" onclick="closeModal(); setTagFilter('${tag}')">#${tag}</span>`
+            ).join('');
+
+            // URLボタンの生成
+            const urlBtn = item.url ? 
+                `<a href="${item.url}" target="_blank" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-gray-900 text-white rounded-full font-bold hover:bg-aomori-blue transition shadow-lg mb-4">
+                    <i class="fa-solid fa-external-link-alt"></i> 公式サイトを見る
+                 </a>` : 
+                 `<div class="inline-block px-4 py-2 bg-gray-100 text-gray-500 rounded-full text-sm font-bold mb-4"><i class="fa-solid fa-info-circle"></i> 公式サイト情報なし</div>`;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="md:w-5/12 bg-gray-100 relative">
+                    ${getThumbnailHtml(item.url, item.name, item.id, 'h-64 md:h-full')}
+                </div>
+                <div class="md:w-7/12 p-6 sm:p-10 flex flex-col">
+                    <div class="flex items-center gap-3 mb-4 flex-wrap">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${colorClass}">${item.category}</span>
+                        <span class="text-sm font-bold text-gray-500"><i class="fa-solid fa-location-dot text-aomori-apple"></i> ${item.location}</span>
+                    </div>
+                    <h2 class="text-3xl font-black text-gray-900 mb-6 leading-tight">${item.name}</h2>
+                    <p class="text-gray-700 leading-loose mb-8 text-lg">${item.description}</p>
+                    <div class="mt-auto">
+                        ${urlBtn}
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            ${tagsHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // レコメンドロジック（同じカテゴリ、またはタグが被っているものを自分以外から抽出）
+            let related = dxCases.filter(c => c.id !== id && (c.category === item.category || c.tags.some(t => item.tags.includes(t))));
+            // シャッフルして最大3件
+            related = related.sort(() => 0.5 - Math.random()).slice(0, 3);
+            
+            const recContainer = document.getElementById('recommendedCases');
+            recContainer.innerHTML = '';
+            
+            if(related.length > 0) {
+                related.forEach(rec => {
+                    const card = document.createElement('div');
+                    card.className = "bg-white p-4 rounded-xl shadow-sm border border-gray-100 cursor-pointer hover:border-aomori-blue transition group flex items-start gap-4";
+                    card.onclick = () => openModal(rec.id);
+                    
+                    const initGrad = `thumb-grad-${(rec.id % 4) + 1}`;
+                    const imgHtml = rec.url 
+                        ? `<img src="https://s.wordpress.com/mshots/v1/${encodeURIComponent(rec.url)}?w=100" class="w-16 h-16 rounded-lg object-cover flex-shrink-0" onerror="this.style.display='none'">`
+                        : `<div class="w-16 h-16 rounded-lg ${initGrad} flex items-center justify-center text-white font-bold text-xl flex-shrink-0">${rec.name.substring(0,1)}</div>`;
+
+                    card.innerHTML = `
+                        ${imgHtml}
+                        <div>
+                            <h5 class="font-bold text-sm text-gray-900 group-hover:text-aomori-blue transition line-clamp-2">${rec.name}</h5>
+                            <p class="text-xs text-gray-500 mt-1">${rec.category}</p>
+                        </div>
+                    `;
+                    recContainer.appendChild(card);
+                });
+            } else {
+                recContainer.innerHTML = `<p class="text-sm text-gray-500">関連する事例が見つかりませんでした。</p>`;
+            }
+
+            // モーダル表示
+            document.getElementById('detailModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // カテゴリボタンの生成
+        function renderCategories() {
+            const categories = ['all', ...new Set(dxCases.map(item => item.category))];
+            const container = document.getElementById('categoryButtons');
+            
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                const isAll = cat === 'all';
+                btn.innerText = isAll ? 'すべて' : cat;
+                btn.className = `whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition ${isAll ? 'bg-gray-900 text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'}`;
+                btn.onclick = (e) => {
+                    // アクティブ状態の切り替え
+                    Array.from(container.children).forEach(c => {
+                        c.className = "whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-50";
+                    });
+                    e.target.className = "whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition bg-gray-900 text-white shadow-md";
+                    
+                    currentCategory = cat;
+                    updateFilterDisplay();
+                    renderGrid();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        // 人気タグの生成
+        function renderPopularTags() {
+            // タグの出現回数をカウント
+            const tagCounts = {};
+            dxCases.forEach(item => {
+                item.tags.forEach(tag => {
+                    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                });
+            });
+            // 出現回数が多い順にソートし、上位10個を取得
+            const popular = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]).slice(0, 10);
+            
+            const container = document.getElementById('popularTags');
+            popular.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.innerHTML = `<i class="fa-solid fa-hashtag text-gray-400 text-xs mr-1"></i>${tag}`;
+                btn.className = "px-3 py-1.5 bg-white border border-gray-200 text-gray-600 text-sm rounded-full font-medium hover:border-aomori-blue hover:text-aomori-blue transition shadow-sm";
+                btn.onclick = () => setTagFilter(tag);
+                container.appendChild(btn);
+            });
+        }
+
+        function setTagFilter(tag) {
+            currentTag = tag;
+            updateFilterDisplay();
+            renderGrid();
+            // スクロールを調整
+            document.getElementById('categories').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetFilters() {
+            currentCategory = 'all';
+            currentTag = null;
+            currentSearch = '';
+            document.getElementById('searchInput').value = '';
+            
+            // カテゴリボタンのリセット
+            const container = document.getElementById('categoryButtons');
+            if(container.children.length > 0) {
+                 Array.from(container.children).forEach((c, index) => {
+                    c.className = index === 0 
+                        ? "whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition bg-gray-900 text-white shadow-md"
+                        : "whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-50";
+                });
+            }
+
+            updateFilterDisplay();
+            renderGrid();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateFilterDisplay() {
+            const display = document.getElementById('activeFilterDisplay');
+            let text = [];
+            if (currentTag) text.push(`タグ: #${currentTag}`);
+            if (currentSearch) text.push(`検索: "${currentSearch}"`);
+            
+            if (text.length > 0) {
+                display.innerHTML = `<span>${text.join(' / ')}</span> <button onclick="resetFilters()" class="hover:text-red-500 ml-2 bg-blue-100 rounded-full w-5 h-5 flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>`;
+                display.classList.remove('hidden');
+            } else {
+                display.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
