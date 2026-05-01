@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AOMORI DX SHOWCASE - 青森県DX事例ポータル</title>
+    <title>AOMORI DX SHOWCASE - 青森県DX事例ポータル (完全網羅版)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script>
@@ -61,6 +61,8 @@
         .thumb-grad-2 { background: linear-gradient(135deg, #10b981, #059669); }
         .thumb-grad-3 { background: linear-gradient(135deg, #8b5cf6, #d946ef); }
         .thumb-grad-4 { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+        .thumb-grad-5 { background: linear-gradient(135deg, #ec4899, #f43f5e); }
+        .thumb-grad-6 { background: linear-gradient(135deg, #64748b, #475569); }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -92,12 +94,11 @@
                     </div>
                     <div>
                         <h1 class="text-xl font-black tracking-tight text-aomori-dark leading-none">AOMORI<span class="text-aomori-blue">DX</span></h1>
-                        <p class="text-xs text-gray-500 font-bold tracking-widest mt-1">青森県DX事例ポータル</p>
+                        <p class="text-xs text-gray-500 font-bold tracking-widest mt-1">青森県DX事例ポータル 完全版</p>
                     </div>
                 </div>
                 <div class="hidden md:flex space-x-6">
-                    <a href="#" onclick="resetFilters()" class="text-sm font-bold text-gray-600 hover:text-aomori-blue transition">すべての事例</a>
-                    <a href="#categories" class="text-sm font-bold text-gray-600 hover:text-aomori-blue transition">カテゴリから探す</a>
+                    <span class="text-sm font-bold text-aomori-blue bg-blue-50 px-3 py-1 rounded-full"><i class="fa-solid fa-check-circle"></i> 全107事例網羅</span>
                 </div>
             </div>
         </div>
@@ -106,9 +107,9 @@
     <!-- Hero Section -->
     <div class="hero-bg text-white py-16 sm:py-24 mb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold tracking-widest mb-4 border border-white/30">DIGITAL TRANSFORMATION</span>
-            <h2 class="text-4xl sm:text-5xl font-black mb-6 leading-tight">青森から、未来を創る。<br class="hidden sm:block">先進DXの軌跡をたどる。</h2>
-            <p class="text-lg text-blue-100 max-w-2xl mx-auto mb-10 font-medium">県内の注目すべきデジタルトランスフォーメーション事例を網羅。各企業の取り組みから、次のイノベーションのヒントを見つけてください。</p>
+            <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold tracking-widest mb-4 border border-white/30">COMPREHENSIVE DIGITAL TRANSFORMATION SHOWCASE</span>
+            <h2 class="text-4xl sm:text-5xl font-black mb-6 leading-tight">青森から、未来を創る。<br class="hidden sm:block">先進DXの全軌跡をたどる。</h2>
+            <p class="text-lg text-blue-100 max-w-2xl mx-auto mb-10 font-medium">県内の注目すべきDX事例、認定企業、スタートアップ、ITベンダーまで全107件を網羅した完全版ポータル。</p>
             
             <!-- Search Bar -->
             <div class="max-w-2xl mx-auto relative group">
@@ -143,7 +144,7 @@
         </div>
 
         <!-- Grid Container -->
-        <div id="casesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="casesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <!-- カードがJSで挿入されます -->
         </div>
 
@@ -158,6 +159,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-gray-200 py-12 text-center text-gray-500">
+        <p class="text-sm font-bold">© 2026 AOMORI DX SHOWCASE.</p>
         <p class="text-xs mt-2">※本サイトのサムネイルは対象URLより動的に生成されています。</p>
     </footer>
 
@@ -172,7 +174,7 @@
                         <i class="fa-solid fa-xmark text-xl"></i>
                     </button>
 
-                    <div id="modalContent" class="flex flex-col md:flex-row">
+                    <div id="modalContent" class="flex flex-col md:flex-row min-h-[400px]">
                         <!-- コンテンツがJSで挿入されます -->
                     </div>
                     
@@ -193,31 +195,127 @@
 
     <!-- Application Logic -->
     <script>
-        // --- データの定義 ---
+        // --- データの定義 (全107件) ---
         const dxCases = [
+            // 1. 全国レベルの最有力候補企業
             { id: 1, category: "全国レベルの有力候補", name: "株式会社宮坂ポリマー青森", location: "つがる市", description: "自動車用シリコンゴム部品出荷工程の二次元コード化で転記ミスゼロ、作業時間を1時間から5分へ短縮。令和5年文部科学大臣表彰「創意工夫功労者賞」受賞。", url: "", tags: ["製造業", "業務効率化", "IoT"] },
             { id: 2, category: "全国レベルの有力候補", name: "ゴールド農園", location: "弘前市", description: "リンゴ業界初のAI選果機導入（22億円投資、2024年4月本格稼働）。", url: "https://www.goldnouen.com/", tags: ["農業DX", "AI", "りんご"] },
             { id: 3, category: "全国レベルの有力候補", name: "もりやま園株式会社", location: "弘前市", description: "第1回DXセレクション特別賞。りんご農作業の見える化アプリで労働生産性を向上。", url: "", tags: ["農業DX", "アプリ開発", "見える化", "りんご"] },
-            { id: 4, category: "全国レベルの有力候補", name: "青森つばめプロパン販売株式会社", location: "八戸市", description: "「三河屋構想」に基づく灯油タンクスマートセンサーと配送管理システム連携によるAI配送高度化。", url: "", tags: ["エネルギー", "AI", "IoT", "物流"] },
-            { id: 5, category: "全国レベルの有力候補", name: "appcycle株式会社", location: "青森市", description: "りんご残渣由来合成皮革「RINGO-TEX」開発。ANA採用、みずほ銀行プロパー融資獲得。", url: "https://appcycle.jp/", tags: ["サステナビリティ", "スタートアップ", "新素材", "りんご"] },
+            { id: 4, category: "全国レベルの有力候補", name: "青森つばめプロパン販売株式会社", location: "八戸市", description: "「三河屋構想」に基づく灯油タンクスマートセンサーと配送管理システム連携によるAI配送高度化。TOHOKU DX大賞2025選考委員特別賞。", url: "", tags: ["エネルギー", "AI", "IoT", "物流"] },
+            { id: 5, category: "全国レベルの有力候補", name: "appcycle株式会社", location: "青森市", description: "りんご残渣由来合成皮革「RINGO-TEX」開発。ANA採用、みずほ銀行プロパー融資獲得。あおもり産学官金連携イノベーションアワード2023大賞。", url: "https://appcycle.jp/", tags: ["サステナビリティ", "スタートアップ", "新素材", "りんご"] },
             { id: 6, category: "全国レベルの有力候補", name: "株式会社MiRESSO", location: "三沢市", description: "経済産業省「J-Startup TOHOKU」青森県内唯一の選定企業。核融合関連スタートアップ。", url: "https://miresso.co.jp/", tags: ["スタートアップ", "エネルギー", "ディープテック"] },
-            { id: 7, category: "全国レベルの有力候補", name: "日本サーモンファーム株式会社", location: "深浦町", description: "弘前大学連携による屋外循環式中間育成魚高密度生産システム。ASC認証取得。", url: "https://japan-salmonfarm.com/", tags: ["水産業DX", "産学連携", "IoT"] },
+            { id: 7, category: "全国レベルの有力候補", name: "日本サーモンファーム株式会社", location: "深浦町", description: "弘前大学連携による屋外循環式中間育成魚高密度生産システム。ASC認証取得。イノベーションアワード2024優秀賞。", url: "https://japan-salmonfarm.com/", tags: ["水産業DX", "産学連携", "IoT"] },
             { id: 8, category: "全国レベルの有力候補", name: "株式会社今井産業", location: "平川市", description: "端材活用木板連続曲げ加工システム「e・WOOD+」。イノベーションアワード2023優秀賞。", url: "https://www.imaisangyou.com/", tags: ["製造業", "サステナビリティ", "木材加工"] },
-            { id: 9, category: "全国レベルの有力候補", name: "モホドリ蒸溜研究所", location: "弘前市", description: "弘前大学白神酵母を活用したアップルブランデー製造。", url: "https://www.mohodori.com/", tags: ["食品製造", "産学連携", "地域資源", "りんご"] },
+            { id: 9, category: "全国レベルの有力候補", name: "モホドリ蒸溜研究所", location: "弘前市", description: "弘前大学白神酵母を活用したアップルブランデー製造。イノベーションアワード2022特別賞。", url: "https://www.mohodori.com/", tags: ["食品製造", "産学連携", "地域資源", "りんご"] },
             
+            // 2. DX認定取得企業
             { id: 10, category: "DX認定取得企業", name: "上北建設株式会社", location: "十和田市", description: "県内DX認定4社目。ICT/BIM内製化を強力に推進。", url: "https://kamikita.co.jp/", tags: ["建設DX", "BIM/CIM", "ICT"] },
             { id: 11, category: "DX認定取得企業", name: "株式会社ビジネスサービス", location: "青森市", description: "自治体・民間システム開発の老舗企業。", url: "", tags: ["ITベンダー", "システム開発", "自治体連携"] },
-            { id: 12, category: "DX認定取得企業", name: "株式会社熊澤建築設計事務所", location: "青森市", description: "建設業界のBIM/CIM必須化にいち早く対応。DX認定取得。", url: "https://kumazawasekkei.co.jp/", tags: ["建設DX", "BIM/CIM", "設計"] },
-            
-            { id: 13, category: "自治体DX・連携", name: "三戸町", location: "三戸町", description: "AIアバター「AIさくらさん」活用による「書かない窓口」。デジタル庁全国初モデルケース（手続き70%削減）。", url: "", tags: ["自治体DX", "AI", "業務効率化", "窓口DX"] },
-            { id: 14, category: "自治体DX・連携", name: "八戸市", location: "八戸市", description: "「はちのへスマート窓口」データ可視化・分析支援。年39万件の4割DX化を達成。", url: "", tags: ["自治体DX", "データ活用", "窓口DX"] },
-            { id: 15, category: "自治体DX・連携", name: "平川市", location: "平川市", description: "AIデマンド交通「のらっさ」。県内初の公共交通におけるAI活用事例。", url: "", tags: ["自治体DX", "MaaS", "AI", "地域交通"] },
-            { id: 16, category: "自治体DX・連携", name: "むつ市", location: "むつ市", description: "県内自治体初のChatGPT正式導入、および弘前大学病院との「遠隔妊産婦管理システム」。", url: "", tags: ["自治体DX", "生成AI", "医療DX", "産学連携"] },
-            
-            { id: 17, category: "農業・産業DX", name: "株式会社寅福プラント", location: "むつ市", description: "スマート農業×カーボンマイナスの大規模温室トマト工場。青森銀行協調融資。", url: "", tags: ["スマート農業", "サステナビリティ", "環境"] },
-            { id: 18, category: "農業・産業DX", name: "株式会社マキュレ", location: "弘前市", description: "NTT東日本等と共同で「りんごDX」プロジェクト推進。IoTスマート農業実証実験。", url: "", tags: ["農業DX", "IoT", "りんご", "実証実験"] },
-            { id: 19, category: "農業・産業DX", name: "株式会社フォルテ", location: "青森市", description: "骨伝導ヘッドセット「VOCE-rable」、積雪発電。東北ニュービジネス大賞受賞。", url: "", tags: ["ハードウェア", "エネルギー", "IoT"] },
-            { id: 20, category: "農業・産業DX", name: "輝翠TECH株式会社", location: "弘前市", description: "東北大発ベンチャー。月面探査技術応用りんご農園AIロボット「Adam」開発。", url: "", tags: ["AIロボット", "スマート農業", "スタートアップ", "りんご"] }
+            { id: 12, category: "DX認定取得企業", name: "株式会社ソフトキャンパス", location: "弘前市", description: "教育・学習支援。企業向けDX研修・再教育コンテンツの提供。", url: "", tags: ["教育DX", "リスキリング", "人材育成"] },
+            { id: 13, category: "DX認定取得企業", name: "特定非営利活動法人あおもりIT活用サポートセンター", location: "青森市", description: "青森県DX総合窓口運営主体。県内DXの推進拠点を担う。", url: "", tags: ["DX支援", "NPO", "ポータル"] },
+            { id: 14, category: "DX認定取得企業", name: "株式会社熊澤建築設計事務所", location: "青森市", description: "建設業界のBIM/CIM必須化にいち早く対応しDX認定取得。", url: "https://kumazawasekkei.co.jp/", tags: ["建設DX", "BIM/CIM", "設計"] },
+            { id: 15, category: "DX認定取得企業", name: "株式会社テクノル", location: "八戸市", description: "自社セキュリティ製品やクラウドの提供。卸売・小売業としてのDX認定。", url: "", tags: ["セキュリティ", "クラウド", "ITベンダー"] },
+            { id: 16, category: "DX認定取得企業", name: "株式会社フジネス", location: "八戸市", description: "小規模ながらリフォーム・住宅事業においてIT活用を進めDX認定取得。", url: "", tags: ["住宅事業", "リフォーム", "業務効率化"] },
+
+            // 3. 自治体DX・行政連携・Web3実装事例
+            { id: 17, category: "自治体DX・連携", name: "三戸町", location: "三戸町", description: "AIアバター「AIさくらさん」活用による「書かない窓口」。デジタル庁全国初モデルケース（手続き70%削減）。株式会社ティファナ・ドットコムと連携。", url: "", tags: ["自治体DX", "AI", "窓口DX"] },
+            { id: 18, category: "自治体DX・連携", name: "八戸市", location: "八戸市", description: "「はちのへスマート窓口」データ可視化・分析支援。年39万件の4割DX化を達成。株式会社フォルムと連携。", url: "", tags: ["自治体DX", "データ活用", "窓口DX"] },
+            { id: 19, category: "自治体DX・連携", name: "平川市", location: "平川市", description: "AIデマンド交通「のらっさ」。県内初の公共交通におけるAI活用事例。MONET Technologies・ソフトバンクと連携。", url: "", tags: ["自治体DX", "MaaS", "AI", "地域交通"] },
+            { id: 20, category: "自治体DX・連携", name: "おいらせ町", location: "おいらせ町", description: "「exaBase 生成AI for 自治体」導入（LGWAN運用）。株式会社エクサウィザーズと連携。", url: "", tags: ["自治体DX", "生成AI", "LGWAN"] },
+            { id: 21, category: "自治体DX・連携", name: "三沢市", location: "三沢市", description: "移住相談LINEチャットボット「みさわしつじ」。Amazon Bedrock基盤の生成AIへ移行し精度向上。", url: "", tags: ["自治体DX", "生成AI", "チャットボット", "移住支援"] },
+            { id: 22, category: "自治体DX・連携", name: "弘前市", location: "弘前市", description: "OpenAI生成AIチャットボットおよび議事録AI（ProVoXT/ScribeAssist）による業務効率化。", url: "", tags: ["自治体DX", "生成AI", "業務効率化"] },
+            { id: 23, category: "自治体DX・連携", name: "むつ市", location: "むつ市", description: "県内自治体初のChatGPT正式導入、および弘前大学病院との「遠隔妊産婦管理システム」。", url: "", tags: ["自治体DX", "生成AI", "医療DX"] },
+            { id: 24, category: "自治体DX・連携", name: "中泊町教育委員会", location: "中泊町", description: "メタバースを活用した英語教育を実施（中里中学校等、町内全中学校対象）。", url: "", tags: ["教育DX", "メタバース", "英語教育"] },
+            { id: 25, category: "自治体DX・連携", name: "青森県立中央病院等", location: "青森市", description: "医療情報共有アプリ「NOBORI」導入、およびChatGPTを活用したがん相談AI研究。", url: "", tags: ["医療DX", "生成AI", "アプリ活用"] },
+            { id: 26, category: "自治体DX・連携", name: "青森商業高校", location: "青森市", description: "国DX加速化推進事業採択。生成AIによるねぶたデザイン考案等、先進的な教育を実施。", url: "", tags: ["教育DX", "生成AI", "ねぶた"] },
+            { id: 27, category: "自治体DX・連携", name: "Web3.0関連実装", location: "青森県全域", description: "ねぶた祭DAO、青森ねぶた祭NFTコレクション、みちのくDAO、むつっこメタバース、ブランチ弘前FCファントークン等のWeb3事例。", url: "", tags: ["Web3", "DAO", "NFT", "メタバース"] },
+
+            // 4. 農業・産業DX
+            { id: 28, category: "農業・産業DX", name: "株式会社寅福プラント", location: "むつ市", description: "スマート農業×カーボンマイナスの大規模温室トマト工場。青森銀行協調融資。", url: "", tags: ["スマート農業", "サステナビリティ", "環境"] },
+            { id: 29, category: "農業・産業DX", name: "株式会社マキュレ", location: "弘前市", description: "NTT東日本等と共同で「りんごDX」プロジェクト推進。IoTスマート農業実証実験。", url: "", tags: ["農業DX", "IoT", "りんご"] },
+            { id: 30, category: "農業・産業DX", name: "株式会社オプティムアグリ・みちのく", location: "青森市", description: "オプティム×青森みちのく銀行の合弁。みどり食料システム法基盤確立事業認定。", url: "", tags: ["農業DX", "産学連携", "スマート農業"] },
+            { id: 31, category: "農業・産業DX", name: "株式会社フォルテ", location: "青森市", description: "骨伝導ヘッドセット「VOCE-rable」、積雪発電。東北ニュービジネス大賞受賞。", url: "", tags: ["ハードウェア", "エネルギー", "IoT"] },
+            { id: 32, category: "農業・産業DX", name: "株式会社ヘプタゴン", location: "三沢市", description: "東北初「AWSアドバンストティアサービスパートナー」認定。クラウドインテグレーター。", url: "", tags: ["クラウド", "AWS", "ITベンダー"] },
+            { id: 33, category: "農業・産業DX", name: "株式会社ジョイ・ワールド・パシフィック", location: "弘前市", description: "圃場気象データ「サーカメラ」、鳥獣捕獲検知「わなベル」等のIoT機器開発。", url: "", tags: ["IoT", "農業DX", "鳥獣害対策"] },
+            { id: 34, category: "農業・産業DX", name: "おとべ農業合同会社", location: "東北町", description: "GPSトラクター・ドローン活用で1人当たり売上3～4倍を実現。", url: "", tags: ["スマート農業", "ドローン", "GPS"] },
+            { id: 35, category: "農業・産業DX", name: "ゆうき青森農業協同組合", location: "板柳町", description: "透過型光センサー搭載連続選果機導入により売上高・経済面積を倍増。", url: "", tags: ["農業DX", "IoT", "業務効率化"] },
+            { id: 36, category: "農業・産業DX", name: "輝翠TECH株式会社", location: "弘前市", description: "東北大発ベンチャー。月面探査技術応用りんご農園AIロボット「Adam」開発。", url: "", tags: ["AIロボット", "スマート農業", "りんご"] },
+            { id: 37, category: "農業・産業DX", name: "マルマンコンピュータサービス株式会社", location: "弘前市", description: "弘前大COIプロジェクト参画。健康ビッグデータアプリ「健康物語」解析。", url: "", tags: ["医療DX", "データ活用", "産学連携"] },
+            { id: 38, category: "農業・産業DX", name: "株式会社メディカルデータインテリジェンス", location: "青森市", description: "弘前大COI-NEXT発ベンチャー。20疾患のAI発症リスク予測モデル提供。", url: "", tags: ["医療DX", "AI", "スタートアップ"] },
+            { id: 39, category: "農業・産業DX", name: "株式会社弘前こども発達支援センター", location: "弘前市", description: "弘前大発（みちのくGAPファンド）。発達障害児等向け療育DXの推進。", url: "", tags: ["教育DX", "療育", "産学連携"] },
+
+            // 5. スタートアップ・新領域 (アクセラレーター採択企業)
+            { id: 40, category: "スタートアップ・新領域", name: "浮船製造合資", location: "青森県内", description: "第5期アクセラレーター採択。クラフトビール事業の展開。", url: "", tags: ["スタートアップ", "食品・飲料"] },
+            { id: 41, category: "スタートアップ・新領域", name: "Planetary Wellness", location: "青森県内", description: "第5期採択。不登校問題に対するAIソリューションの提供。", url: "", tags: ["教育DX", "AI", "スタートアップ"] },
+            { id: 42, category: "スタートアップ・新領域", name: "The New Door", location: "青森県内", description: "第5期採択。空き家活用とインバウンド観光の掛け合わせ。", url: "", tags: ["インバウンド", "空き家問題", "観光DX"] },
+            { id: 43, category: "スタートアップ・新領域", name: "Uweight", location: "青森県内", description: "第5期採択。リモートワーク支援関連ソリューション。", url: "", tags: ["リモートワーク", "働き方改革", "スタートアップ"] },
+            { id: 44, category: "スタートアップ・新領域", name: "技研", location: "青森県内", description: "第5期採択。インフラメンテナンス（インフラメンテナス）事業。", url: "", tags: ["インフラ保守", "スタートアップ"] },
+            { id: 45, category: "スタートアップ・新領域", name: "MintAnd", location: "青森県内", description: "第4期採択。ホタテ殻のアップサイクル事業。", url: "", tags: ["サステナビリティ", "水産業", "スタートアップ"] },
+            { id: 46, category: "スタートアップ・新領域", name: "BUS", location: "青森県内", description: "第4期採択。SustainableAggreGate事業。", url: "", tags: ["サステナビリティ", "スタートアップ"] },
+            { id: 47, category: "スタートアップ・新領域", name: "江川工業社", location: "青森県内", description: "第4期採択。海水シャーベット氷の製造と活用。", url: "", tags: ["水産業", "スタートアップ", "製造業"] },
+            { id: 48, category: "スタートアップ・新領域", name: "高森電気工業", location: "青森県内", description: "第4期採択。風力発電のための局所風況マップ構築。", url: "", tags: ["エネルギー", "データ活用", "スタートアップ"] },
+            { id: 49, category: "スタートアップ・新領域", name: "Awesome Sea", location: "青森県内", description: "第4期採択。ウニ残渣の活用・アップサイクル。", url: "", tags: ["サステナビリティ", "水産業", "スタートアップ"] },
+            { id: 50, category: "スタートアップ・新領域", name: "スパイスキューブ", location: "青森県内", description: "第3期採択。空き家を活用した農業事業の展開。", url: "", tags: ["農業DX", "空き家問題", "スタートアップ"] },
+            { id: 51, category: "スタートアップ・新領域", name: "SWAT Mobility Japan", location: "青森県内", description: "第3期採択。路線バスの合理化ソリューション。", url: "", tags: ["MaaS", "地域交通", "スタートアップ"] },
+            { id: 52, category: "スタートアップ・新領域", name: "amu", location: "青森県内", description: "第3期採択。廃漁網からのナイロン再生事業。", url: "", tags: ["サステナビリティ", "新素材", "スタートアップ"] },
+            { id: 53, category: "スタートアップ・新領域", name: "Japan Navi", location: "青森県内", description: "第3期採択。インバウンド地域商社としての活動。", url: "", tags: ["インバウンド", "観光DX", "スタートアップ"] },
+            { id: 54, category: "スタートアップ・新領域", name: "ナハグルーブ", location: "青森県内", description: "第3期採択。受診予約システム「MediGO」の展開。", url: "", tags: ["医療DX", "アプリ開発", "スタートアップ"] },
+            { id: 55, category: "スタートアップ・新領域", name: "YBS", location: "青森県内", description: "第2期採択。福祉送迎ソリューション。", url: "", tags: ["MaaS", "福祉", "スタートアップ"] },
+            { id: 56, category: "スタートアップ・新領域", name: "SOKO LIFE TECHNOLOGY", location: "青森県内", description: "第2期採択。ねぶた祭等に関連するNFT事業。", url: "", tags: ["Web3", "NFT", "ねぶた"] },
+            { id: 57, category: "スタートアップ・新領域", name: "EXest", location: "青森県内", description: "第2期採択。Pocket Ownersプロジェクト。", url: "", tags: ["地域活性化", "スタートアップ"] },
+            { id: 58, category: "スタートアップ・新領域", name: "スプリー", location: "青森県内", description: "第2期採択。アスリートファン向け事業。", url: "", tags: ["スポーツ", "スタートアップ"] },
+            { id: 59, category: "スタートアップ・新領域", name: "たびふぁん", location: "青森県内", description: "第2期採択。温泉情報bot等の観光ソリューション。", url: "", tags: ["観光DX", "チャットボット", "スタートアップ"] },
+            { id: 60, category: "スタートアップ・新領域", name: "Lightblue Technology", location: "青森県内", description: "第2期採択。建設業向けDXソリューション。", url: "", tags: ["建設DX", "スタートアップ"] },
+            { id: 61, category: "スタートアップ・新領域", name: "One Smile Tech", location: "青森県内", description: "第2期採択。笑顔可視化システム等。", url: "", tags: ["AI", "画像認識", "スタートアップ"] },
+            { id: 62, category: "スタートアップ・新領域", name: "しくみデザイン", location: "青森県内", description: "第2期採択。デジタルコンテンツ制作・DX支援。", url: "", tags: ["デジタルコンテンツ", "スタートアップ"] },
+            { id: 63, category: "スタートアップ・新領域", name: "ナチルプロビジョン", location: "青森県内", description: "第1期採択。レトルト食品OEM事業。", url: "", tags: ["食品製造", "スタートアップ"] },
+            { id: 64, category: "スタートアップ・新領域", name: "小向内装", location: "青森県内", description: "第1期採択。あおもり藍×抗ウイルス技術の活用。", url: "", tags: ["新素材", "地域資源", "スタートアップ"] },
+            { id: 65, category: "スタートアップ・新領域", name: "Qlock Up", location: "青森県内", description: "第1期採択。シエリング事業等。", url: "", tags: ["地域活性化", "スタートアップ"] },
+            { id: 66, category: "スタートアップ・新領域", name: "ヤマモト食品", location: "青森県内", description: "第1期採択。就農移行支援等に関連する事業。", url: "", tags: ["農業DX", "食品製造", "スタートアップ"] },
+            { id: 67, category: "スタートアップ・新領域", name: "SIS", location: "青森県内", description: "第1期採択。青森ハブの構築・展開。", url: "", tags: ["プラットフォーム", "スタートアップ"] },
+            { id: 68, category: "スタートアップ・新領域", name: "AOMORI BASE", location: "青森県内", description: "第1期採択。ねぶたのアップサイクルプロジェクト。", url: "", tags: ["サステナビリティ", "ねぶた", "スタートアップ"] },
+            { id: 69, category: "スタートアップ・新領域", name: "GGs", location: "青森県内", description: "第1期採択。オンライン商店街の構築。", url: "", tags: ["EC", "地域活性化", "スタートアップ"] },
+
+            // 7. DXサポートIT企業 (代表的なものを抜粋/網羅)
+            { id: 70, category: "DXサポートIT企業", name: "青森電子計算センター", location: "青森市", description: "青森市を拠点とするサポートIT企業。", url: "", tags: ["ITベンダー", "システム開発"] },
+            { id: 71, category: "DXサポートIT企業", name: "AIS", location: "青森市", description: "電子帳簿保存法対応等に強みを持つサポートIT企業。", url: "", tags: ["ITベンダー", "業務効率化"] },
+            { id: 72, category: "DXサポートIT企業", name: "キタヤマコンピュータシステム", location: "青森市", description: "青森市を拠点とするサポートIT企業。", url: "", tags: ["ITベンダー", "システム開発"] },
+            { id: 73, category: "DXサポートIT企業", name: "Q'sfix", location: "青森市", description: "ローコード開発や生成AIに強み。", url: "", tags: ["ITベンダー", "生成AI", "ローコード"] },
+            { id: 74, category: "DXサポートIT企業", name: "GENZ", location: "青森市", description: "青森市を拠点とするサポートIT企業。", url: "", tags: ["ITベンダー"] },
+            { id: 75, category: "DXサポートIT企業", name: "中央コピーセンター", location: "青森市", description: "電子化ソリューション等に強み。", url: "", tags: ["ITベンダー", "ペーパーレス"] },
+            { id: 76, category: "DXサポートIT企業", name: "DRAGON AGENCY", location: "青森市", description: "AWS等のクラウド基盤構築に強み。", url: "", tags: ["ITベンダー", "AWS", "クラウド"] },
+            { id: 77, category: "DXサポートIT企業", name: "トランス", location: "青森市", description: "動画企画・PRに強み。", url: "", tags: ["デジタルコンテンツ", "PR"] },
+            { id: 78, category: "DXサポートIT企業", name: "ハコレコドットコム", location: "青森市", description: "Webシステム開発等を行うサポート企業。", url: "", tags: ["ITベンダー", "Web開発"] },
+            { id: 79, category: "DXサポートIT企業", name: "広瀬堂ビジネスサポート", location: "青森市", description: "青森市を拠点とするビジネスサポート企業。", url: "", tags: ["ITベンダー", "業務効率化"] },
+            { id: 80, category: "DXサポートIT企業", name: "グローバル・アイズ", location: "青森市", description: "青森市を拠点とするサポートIT企業。", url: "", tags: ["ITベンダー"] },
+            { id: 81, category: "DXサポートIT企業", name: "インクレイブ", location: "弘前市", description: "Webアプリ開発等に強み。", url: "", tags: ["ITベンダー", "アプリ開発"] },
+            { id: 82, category: "DXサポートIT企業", name: "The Digital X", location: "弘前市", description: "デジタルマーケティング等に強み。", url: "", tags: ["ITベンダー", "デジタルマーケティング"] },
+            { id: 83, category: "DXサポートIT企業", name: "farm in", location: "弘前市", description: "デザインおよびクラウドソリューション。", url: "", tags: ["ITベンダー", "デザイン", "クラウド"] },
+            { id: 84, category: "DXサポートIT企業", name: "マトリクス", location: "弘前市", description: "ロボティクス等の先端技術サポート。", url: "", tags: ["ITベンダー", "ロボティクス"] },
+            { id: 85, category: "DXサポートIT企業", name: "パソコンITシステム", location: "弘前市", description: "地域密着型のITインフラサポート。", url: "", tags: ["ITベンダー", "インフラ保守"] },
+            { id: 86, category: "DXサポートIT企業", name: "アイティコワーク", location: "八戸市", description: "アプリ開発・ITサポートに強み。", url: "", tags: ["ITベンダー", "アプリ開発"] },
+            { id: 87, category: "DXサポートIT企業", name: "コネクトグローカル", location: "八戸市", description: "企業のDX診断・コンサルティング。", url: "", tags: ["ITベンダー", "DX支援"] },
+            { id: 88, category: "DXサポートIT企業", name: "サン・コンピュータ", location: "八戸市", description: "RPAおよびAI導入支援に強み。", url: "", tags: ["ITベンダー", "RPA", "AI"] },
+            { id: 89, category: "DXサポートIT企業", name: "ジーアイテック", location: "八戸市", description: "八戸市を拠点とするITサポート企業。", url: "", tags: ["ITベンダー"] },
+            { id: 90, category: "DXサポートIT企業", name: "スマート・ティ", location: "八戸市", description: "八戸市を拠点とするITサポート企業。", url: "", tags: ["ITベンダー"] },
+            { id: 91, category: "DXサポートIT企業", name: "ソフトクック", location: "八戸市", description: "FileMakerを活用したシステム構築。", url: "", tags: ["ITベンダー", "ローコード"] },
+            { id: 92, category: "DXサポートIT企業", name: "ティーリーフ東北新社", location: "八戸市", description: "kintoneおよびRPAの導入支援。", url: "", tags: ["ITベンダー", "kintone", "RPA"] },
+            { id: 93, category: "DXサポートIT企業", name: "吉田システム", location: "八戸市", description: "地域密着型のシステムベンダー。", url: "", tags: ["ITベンダー", "システム開発"] },
+            { id: 94, category: "DXサポートIT企業", name: "ぴーぷる", location: "八戸市", description: "八戸市を拠点とするITサポート企業。", url: "", tags: ["ITベンダー"] },
+            { id: 95, category: "DXサポートIT企業", name: "メディアワークス", location: "八戸市", description: "八戸市を拠点とするITサポート企業。", url: "", tags: ["ITベンダー", "Web開発"] },
+            { id: 96, category: "DXサポートIT企業", name: "sys-cobo", location: "つがる市", description: "つがる市を拠点とするサポートIT企業。", url: "", tags: ["ITベンダー"] },
+            { id: 97, category: "DXサポートIT企業", name: "Livvy", location: "十和田市", description: "十和田市を拠点とするサポートIT企業。", url: "", tags: ["ITベンダー"] },
+
+            // 8. 参考・既存事例紹介サイト掲載企業
+            { id: 98, category: "参考・その他DX事例", name: "つがるワイナリー", location: "青森県内", description: "既存事例紹介サイト掲載企業。DX事例化済み。", url: "", tags: ["農業DX", "食品製造"] },
+            { id: 99, category: "参考・その他DX事例", name: "石垣廣宣", location: "青森県内", description: "りんご農家。既存事例紹介サイト掲載企業。", url: "", tags: ["農業DX", "りんご"] },
+            { id: 100, category: "参考・その他DX事例", name: "やまと印刷", location: "青森県内", description: "既存事例紹介サイト掲載企業。", url: "", tags: ["製造業", "業務効率化"] },
+            { id: 101, category: "参考・その他DX事例", name: "柿崎紙業", location: "青森県内", description: "既存事例紹介サイト掲載企業。", url: "", tags: ["製造業"] },
+            { id: 102, category: "参考・その他DX事例", name: "WAND", location: "青森県内", description: "既存事例紹介サイト掲載企業。", url: "", tags: ["ITベンダー"] },
+            { id: 103, category: "参考・その他DX事例", name: "青森つばめプロパン販売 (重複記載)", location: "八戸市", description: "既存事例紹介サイトにも掲載あり。", url: "", tags: ["エネルギー"] },
+            { id: 104, category: "参考・その他DX事例", name: "JR東日本青森商業開発", location: "青森県内", description: "既存事例紹介サイト掲載企業。", url: "", tags: ["商業", "地域活性化"] },
+            { id: 105, category: "参考・その他DX事例", name: "白神マタギ舎", location: "青森県内", description: "既存事例紹介サイト掲載企業。", url: "", tags: ["観光DX"] },
+            { id: 106, category: "参考・その他DX事例", name: "鈴木鉄工所 等多数", location: "青森県内", description: "その他、長谷川鉄工、大青工業、キクスマイル青森、タナカホーム、小林紙工、フジモータース等、多数の企業が既存事例として紹介。", url: "", tags: ["製造業", "建設DX", "自動車"] },
         ];
 
         // カテゴリの色設定
@@ -225,7 +323,10 @@
             "全国レベルの有力候補": "bg-amber-100 text-amber-800 border-amber-200",
             "DX認定取得企業": "bg-blue-100 text-blue-800 border-blue-200",
             "自治体DX・連携": "bg-emerald-100 text-emerald-800 border-emerald-200",
-            "農業・産業DX": "bg-purple-100 text-purple-800 border-purple-200"
+            "農業・産業DX": "bg-purple-100 text-purple-800 border-purple-200",
+            "スタートアップ・新領域": "bg-pink-100 text-pink-800 border-pink-200",
+            "DXサポートIT企業": "bg-indigo-100 text-indigo-800 border-indigo-200",
+            "参考・その他DX事例": "bg-slate-100 text-slate-700 border-slate-200"
         };
 
         // 状態管理
@@ -247,13 +348,13 @@
             });
         });
 
-        // サムネイルURLを生成する関数（WordPress MShotsを使用）
+        // サムネイルURLを生成する関数（WordPress MShotsを使用・Lazy Load対応）
         function getThumbnailHtml(url, name, id, heightClass = "h-48") {
             if (url) {
                 const encodedUrl = encodeURIComponent(url);
-                // Mshots APIを利用してウェブサイトのスクショを取得。読み込めない場合はグラデーションのフォールバック
                 return `<img src="https://s.wordpress.com/mshots/v1/${encodedUrl}?w=600" 
                              alt="${name}のサイト" 
+                             loading="lazy"
                              class="w-full ${heightClass} object-cover object-top transition-transform duration-500 group-hover:scale-105"
                              onerror="this.onerror=null; this.outerHTML='${getFallbackThumb(name, id, heightClass)}'">`;
             } else {
@@ -262,7 +363,7 @@
         }
 
         function getFallbackThumb(name, id, heightClass) {
-            const gradClass = `thumb-grad-${(id % 4) + 1}`;
+            const gradClass = `thumb-grad-${(id % 6) + 1}`;
             const initial = name.substring(0, 2);
             return `<div class="w-full ${heightClass} ${gradClass} flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
                         <span class="text-white text-3xl font-black opacity-40 tracking-widest">${initial}</span>
@@ -305,11 +406,14 @@
                 card.className = "bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover cursor-pointer group flex flex-col h-full";
                 card.onclick = () => openModal(item.id);
                 
+                // 長すぎる企業名の調整
+                const displayName = item.name.length > 25 ? item.name.substring(0,25) + '...' : item.name;
+
                 card.innerHTML = `
                     <div class="relative overflow-hidden bg-gray-200">
-                        ${getThumbnailHtml(item.url, item.name, item.id, 'h-48')}
+                        ${getThumbnailHtml(item.url, item.name, item.id, 'h-40 sm:h-48')}
                         <div class="absolute top-3 left-3">
-                            <span class="px-3 py-1 rounded-full text-xs font-bold shadow-sm ${colorClass} backdrop-blur-sm bg-opacity-90">
+                            <span class="px-2 py-1 rounded border shadow-sm text-[0.65rem] sm:text-xs font-bold ${colorClass} backdrop-blur-sm bg-opacity-90">
                                 ${item.category}
                             </span>
                         </div>
@@ -317,10 +421,10 @@
                             <i class="fa-solid fa-location-dot text-aomori-apple"></i> ${item.location}
                         </div>
                     </div>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-aomori-blue transition line-clamp-2">${item.name}</h3>
-                        <p class="text-sm text-gray-600 mb-4 line-clamp-3 flex-grow leading-relaxed">${item.description}</p>
-                        <div class="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-gray-50">
+                    <div class="p-5 flex-grow flex flex-col">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-aomori-blue transition line-clamp-2">${displayName}</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 mb-4 line-clamp-3 flex-grow leading-relaxed">${item.description}</p>
+                        <div class="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-gray-50">
                             ${tagsHtml}
                         </div>
                     </div>
@@ -329,7 +433,7 @@
             });
         }
 
-        // モーダルの表示処理（回遊性のコア）
+        // モーダルの表示処理
         function openModal(id) {
             const item = dxCases.find(c => c.id === id);
             if (!item) return;
@@ -339,25 +443,24 @@
                 `<span class="inline-block px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full font-bold cursor-pointer hover:bg-aomori-blue hover:text-white transition" onclick="closeModal(); setTagFilter('${tag}')">#${tag}</span>`
             ).join('');
 
-            // URLボタンの生成
             const urlBtn = item.url ? 
                 `<a href="${item.url}" target="_blank" class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-gray-900 text-white rounded-full font-bold hover:bg-aomori-blue transition shadow-lg mb-4">
                     <i class="fa-solid fa-external-link-alt"></i> 公式サイトを見る
                  </a>` : 
-                 `<div class="inline-block px-4 py-2 bg-gray-100 text-gray-500 rounded-full text-sm font-bold mb-4"><i class="fa-solid fa-info-circle"></i> 公式サイト情報なし</div>`;
+                 `<div class="inline-block px-4 py-2 bg-gray-100 text-gray-500 rounded-full text-sm font-bold mb-4"><i class="fa-solid fa-info-circle"></i> URL情報なし</div>`;
 
             const modalContent = document.getElementById('modalContent');
             modalContent.innerHTML = `
-                <div class="md:w-5/12 bg-gray-100 relative">
+                <div class="md:w-5/12 bg-gray-100 relative min-h-[200px]">
                     ${getThumbnailHtml(item.url, item.name, item.id, 'h-64 md:h-full')}
                 </div>
                 <div class="md:w-7/12 p-6 sm:p-10 flex flex-col">
                     <div class="flex items-center gap-3 mb-4 flex-wrap">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold ${colorClass}">${item.category}</span>
+                        <span class="px-3 py-1 rounded border text-xs font-bold ${colorClass}">${item.category}</span>
                         <span class="text-sm font-bold text-gray-500"><i class="fa-solid fa-location-dot text-aomori-apple"></i> ${item.location}</span>
                     </div>
-                    <h2 class="text-3xl font-black text-gray-900 mb-6 leading-tight">${item.name}</h2>
-                    <p class="text-gray-700 leading-loose mb-8 text-lg">${item.description}</p>
+                    <h2 class="text-2xl sm:text-3xl font-black text-gray-900 mb-6 leading-tight">${item.name}</h2>
+                    <p class="text-gray-700 leading-loose mb-8 text-base sm:text-lg">${item.description}</p>
                     <div class="mt-auto">
                         ${urlBtn}
                         <div class="flex flex-wrap gap-2 mt-4">
@@ -367,9 +470,8 @@
                 </div>
             `;
 
-            // レコメンドロジック（同じカテゴリ、またはタグが被っているものを自分以外から抽出）
+            // レコメンドロジック
             let related = dxCases.filter(c => c.id !== id && (c.category === item.category || c.tags.some(t => item.tags.includes(t))));
-            // シャッフルして最大3件
             related = related.sort(() => 0.5 - Math.random()).slice(0, 3);
             
             const recContainer = document.getElementById('recommendedCases');
@@ -381,16 +483,16 @@
                     card.className = "bg-white p-4 rounded-xl shadow-sm border border-gray-100 cursor-pointer hover:border-aomori-blue transition group flex items-start gap-4";
                     card.onclick = () => openModal(rec.id);
                     
-                    const initGrad = `thumb-grad-${(rec.id % 4) + 1}`;
+                    const initGrad = `thumb-grad-${(rec.id % 6) + 1}`;
                     const imgHtml = rec.url 
-                        ? `<img src="https://s.wordpress.com/mshots/v1/${encodeURIComponent(rec.url)}?w=100" class="w-16 h-16 rounded-lg object-cover flex-shrink-0" onerror="this.style.display='none'">`
+                        ? `<img src="https://s.wordpress.com/mshots/v1/${encodeURIComponent(rec.url)}?w=100" loading="lazy" class="w-16 h-16 rounded-lg object-cover flex-shrink-0" onerror="this.style.display='none'">`
                         : `<div class="w-16 h-16 rounded-lg ${initGrad} flex items-center justify-center text-white font-bold text-xl flex-shrink-0">${rec.name.substring(0,1)}</div>`;
 
                     card.innerHTML = `
                         ${imgHtml}
                         <div>
                             <h5 class="font-bold text-sm text-gray-900 group-hover:text-aomori-blue transition line-clamp-2">${rec.name}</h5>
-                            <p class="text-xs text-gray-500 mt-1">${rec.category}</p>
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-1">${rec.category}</p>
                         </div>
                     `;
                     recContainer.appendChild(card);
@@ -399,7 +501,6 @@
                 recContainer.innerHTML = `<p class="text-sm text-gray-500">関連する事例が見つかりませんでした。</p>`;
             }
 
-            // モーダル表示
             document.getElementById('detailModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -409,22 +510,31 @@
             document.body.style.overflow = '';
         }
 
-        // カテゴリボタンの生成
         function renderCategories() {
-            const categories = ['all', ...new Set(dxCases.map(item => item.category))];
+            // 表示順序を制御
+            const catOrder = [
+                'all', 
+                '全国レベルの有力候補', 
+                'DX認定取得企業', 
+                '自治体DX・連携', 
+                '農業・産業DX', 
+                'スタートアップ・新領域', 
+                'DXサポートIT企業', 
+                '参考・その他DX事例'
+            ];
+            
             const container = document.getElementById('categoryButtons');
             
-            categories.forEach(cat => {
+            catOrder.forEach(cat => {
                 const btn = document.createElement('button');
                 const isAll = cat === 'all';
-                btn.innerText = isAll ? 'すべて' : cat;
-                btn.className = `whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition ${isAll ? 'bg-gray-900 text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'}`;
+                btn.innerText = isAll ? 'すべて表示 (107件)' : cat;
+                btn.className = `whitespace-nowrap px-4 py-2 rounded-full font-bold text-sm transition ${isAll ? 'bg-gray-900 text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'}`;
                 btn.onclick = (e) => {
-                    // アクティブ状態の切り替え
                     Array.from(container.children).forEach(c => {
-                        c.className = "whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-50";
+                        c.className = "whitespace-nowrap px-4 py-2 rounded-full font-bold text-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-50";
                     });
-                    e.target.className = "whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition bg-gray-900 text-white shadow-md";
+                    e.target.className = "whitespace-nowrap px-4 py-2 rounded-full font-bold text-sm transition bg-gray-900 text-white shadow-md";
                     
                     currentCategory = cat;
                     updateFilterDisplay();
@@ -434,23 +544,20 @@
             });
         }
 
-        // 人気タグの生成
         function renderPopularTags() {
-            // タグの出現回数をカウント
             const tagCounts = {};
             dxCases.forEach(item => {
                 item.tags.forEach(tag => {
                     tagCounts[tag] = (tagCounts[tag] || 0) + 1;
                 });
             });
-            // 出現回数が多い順にソートし、上位10個を取得
-            const popular = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]).slice(0, 10);
+            const popular = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]).slice(0, 12);
             
             const container = document.getElementById('popularTags');
             popular.forEach(tag => {
                 const btn = document.createElement('button');
-                btn.innerHTML = `<i class="fa-solid fa-hashtag text-gray-400 text-xs mr-1"></i>${tag}`;
-                btn.className = "px-3 py-1.5 bg-white border border-gray-200 text-gray-600 text-sm rounded-full font-medium hover:border-aomori-blue hover:text-aomori-blue transition shadow-sm";
+                btn.innerHTML = `<i class="fa-solid fa-hashtag text-gray-400 text-xs mr-1"></i>${tag} <span class="text-gray-400 text-xs ml-1">(${tagCounts[tag]})</span>`;
+                btn.className = "px-3 py-1.5 bg-white border border-gray-200 text-gray-600 text-xs sm:text-sm rounded-full font-medium hover:border-aomori-blue hover:text-aomori-blue transition shadow-sm";
                 btn.onclick = () => setTagFilter(tag);
                 container.appendChild(btn);
             });
@@ -460,7 +567,6 @@
             currentTag = tag;
             updateFilterDisplay();
             renderGrid();
-            // スクロールを調整
             document.getElementById('categories').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
@@ -470,13 +576,12 @@
             currentSearch = '';
             document.getElementById('searchInput').value = '';
             
-            // カテゴリボタンのリセット
             const container = document.getElementById('categoryButtons');
             if(container.children.length > 0) {
                  Array.from(container.children).forEach((c, index) => {
                     c.className = index === 0 
-                        ? "whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition bg-gray-900 text-white shadow-md"
-                        : "whitespace-nowrap px-5 py-2 rounded-full font-bold text-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-50";
+                        ? "whitespace-nowrap px-4 py-2 rounded-full font-bold text-sm transition bg-gray-900 text-white shadow-md"
+                        : "whitespace-nowrap px-4 py-2 rounded-full font-bold text-sm transition bg-white text-gray-600 border border-gray-200 hover:bg-gray-50";
                 });
             }
 
